@@ -1,9 +1,10 @@
 {
   "name": "@hsqza/react-component-library",
-  "version": "0.0.54",
+  "version": "0.0.60",
   "description": "UI react component library",
   "scripts": {
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "build": "npm run rollup && npm publish"
   },
   "author": "P&G",
   "license": "ISC",

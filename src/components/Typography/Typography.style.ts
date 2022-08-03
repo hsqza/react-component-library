@@ -23,16 +23,7 @@ const renderStyles = (type: HTMLVariants) => {
 
 const TypographyRoot = styled.span<TypographyProps>`
   margin: 0;
-
-  background: ${(props) => {
-    if (props.as === 'h1') {
-      return 'lightblue'
-    } else if (props.as === 'h2') {
-      return 'lightblue'
-    }
-    return undefined
-  }};
+  ${(props) => renderStyles(props.as as HTMLVariants)};
 `
-// ${(props) => renderStyles(props.as as HTMLVariants)};
 
 export default TypographyRoot
