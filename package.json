@@ -1,6 +1,6 @@
 {
   "name": "@hsqza/react-component-library",
-  "version": "0.0.44",
+  "version": "0.0.48",
   "description": "UI react component library",
   "scripts": {
     "rollup": "rollup -c"
