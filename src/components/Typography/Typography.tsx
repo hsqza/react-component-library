@@ -4,14 +4,10 @@ import clsx from 'clsx'
 import { DefaultVariantMapping, TypographyProps } from './Typography.types'
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>((props, ref) => {
-  const { variant = 'span', children, className, ...other } = props
+  const { variant = 'span', children, ...other } = props
 
   return (
-    <TypographyRoot
-      as={DefaultVariantMapping[variant]}
-      ref={ref}
-      {...other}
-      className={clsx(TypographyRoot, className)}>
+    <TypographyRoot as={DefaultVariantMapping[variant]} ref={ref} {...other}>
       {children}
     </TypographyRoot>
   )

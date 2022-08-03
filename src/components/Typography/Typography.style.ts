@@ -4,7 +4,6 @@ import { HTMLVariants, TypographyProps } from './Typography.types'
 const h1 = css`
   font-size: 2.5rem;
   line-height: 1.5;
-  background: lightgreen;
 `
 const h2 = css`
   font-size: 2rem;
@@ -24,9 +23,16 @@ const renderStyles = (type: HTMLVariants) => {
 
 const TypographyRoot = styled.span<TypographyProps>`
   margin: 0;
-  border-bottom: 1px solid green;
 
-  ${(props) => renderStyles(props.as as HTMLVariants)};
+  background: ${(props) => {
+    if (props.as === 'h1') {
+      return 'lightblue'
+    } else if (props.as === 'h2') {
+      return 'lightblue'
+    }
+    return undefined
+  }};
 `
+// ${(props) => renderStyles(props.as as HTMLVariants)};
 
 export default TypographyRoot
