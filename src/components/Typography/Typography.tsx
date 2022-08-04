@@ -1,6 +1,5 @@
 import React from 'react'
 import TypographyRoot from './Typography.style'
-import clsx from 'clsx'
 import { DefaultVariantMapping, TypographyProps } from './Typography.types'
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>((props, ref) => {
