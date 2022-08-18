@@ -1,9 +1,14 @@
 import React, { MouseEventHandler } from 'react'
+import { ColorTypes } from '../../core/Colors/Colors'
+
+type ButtonSize = 'sm' | 'md'
+type ButtonVariant = 'contained' | 'outlined'
 
 export interface ButtonProps {
   children: React.ReactNode
-  primary?: boolean
+  color?: ColorTypes
+  variant?: ButtonVariant
+  size?: ButtonSize
   disabled?: boolean
-  size?: 'sm' | 'md' | 'lg'
   onClick: MouseEventHandler<HTMLButtonElement>
 }
