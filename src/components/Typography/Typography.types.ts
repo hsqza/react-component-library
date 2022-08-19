@@ -1,3 +1,5 @@
+import { ComponentInterface } from '../component.types'
+
 export type HTMLVariants = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
 export enum DefaultVariantMapping {
@@ -15,10 +17,7 @@ export enum DefaultVariantMapping {
   span = 'span'
 }
 
-export interface TypographyProps {
+export interface TypographyProps extends ComponentInterface {
   as?: HTMLVariants
   variant: HTMLVariants
-  children?: React.ReactNode
-  style?: React.CSSProperties
-  className?: string
 }

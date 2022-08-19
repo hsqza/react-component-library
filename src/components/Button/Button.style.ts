@@ -1,13 +1,8 @@
 import styled, { css } from 'styled-components'
-import { ButtonProps } from './Button.types'
+import { ButtonColor, ButtonProps, ButtonSize, ButtonVariant } from './Button.types'
 import { Colors } from '../../core'
-import { ColorTypes } from '../../core/Colors/Colors'
 
-const setupVariantBackgroundColors = (
-  variant: ButtonProps['variant'],
-  color: string,
-  isWhite?: boolean
-) => {
+const setupVariantBackgroundColors = (variant: ButtonVariant, color: string, isWhite?: boolean) => {
   let properties = {
     textColor: '#fff',
     backgroundColor: color,
@@ -28,9 +23,9 @@ const setupVariantBackgroundColors = (
 
   switch (variant) {
     case 'outlined':
-      properties.textColor = color
+      properties.textColor = isWhite ? Colors.primary_deep : color
       properties.backgroundColor = 'transparent'
-      properties.hoverTextColor = color
+      properties.hoverTextColor = isWhite ? Colors.primary_deep : color
       properties.hoverBorderColor = color
       properties.borderColor = color
       properties.hoverBoxShadow = `inset 0px 0px 0px 1px ${color}`
@@ -43,20 +38,18 @@ const setupVariantBackgroundColors = (
   return properties
 }
 
-const setupButtonBackgroundDependsVariant = (
-  color: string,
-  variant: ButtonProps['variant'],
-  isWhite?: boolean
-) => {
+const setupBackgroundDependsVariant = (color: string, variant?: ButtonVariant) => {
   let properties
+  const selectedColor = Colors[color as ButtonColor]
+  const isWhite = color === 'white'
 
   switch (variant) {
     case 'contained':
     default:
-      properties = setupVariantBackgroundColors('contained', color, isWhite)
+      properties = setupVariantBackgroundColors('contained', selectedColor, isWhite)
       break
     case 'outlined':
-      properties = setupVariantBackgroundColors('outlined', color, isWhite)
+      properties = setupVariantBackgroundColors('outlined', selectedColor, isWhite)
       break
   }
 
@@ -73,7 +66,7 @@ const setupButtonBackgroundDependsVariant = (
   `
 }
 
-const setupSize = (size: ButtonProps['size']) => {
+const setupSize = (size: ButtonSize) => {
   let padding = '1rem 4rem'
 
   switch (size) {
@@ -82,21 +75,14 @@ const setupSize = (size: ButtonProps['size']) => {
       break
     case 'md':
     default:
-      padding = '1rem 4rem'
+      padding
   }
   return css`
     padding: ${padding};
   `
 }
 
-const renderColorVariant = (color: ButtonProps['color'], variant: ButtonProps['variant']) => {
-  if (color === 'white') {
-    return setupButtonBackgroundDependsVariant(Colors[color as ColorTypes], variant, true)
-  }
-  return setupButtonBackgroundDependsVariant(Colors[color as ColorTypes], variant)
-}
-
-const renderDisabled = (color?: ButtonProps['color'], variant?: ButtonProps['variant']) => {
+const setupDisable = (color?: ButtonColor, variant?: ButtonVariant) => {
   const hoverOnlyForContainedVariant =
     variant === 'contained'
       ? `
@@ -117,6 +103,9 @@ const renderDisabled = (color?: ButtonProps['color'], variant?: ButtonProps['var
 }
 
 const StyledButton = styled.button<ButtonProps>`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   border: 0;
   font-size: 0.75rem;
   line-height: 1.25;
@@ -135,15 +124,17 @@ const StyledButton = styled.button<ButtonProps>`
     }
 
     if (props.color) {
-      properties.push(renderColorVariant(props.color, props.variant))
+      properties.push(setupBackgroundDependsVariant(props.color, props.variant))
     }
-    if (props.disabled) {
-      const pickedColor = (Colors[props.color as ColorTypes] as ButtonProps['color']) || undefined
 
-      properties.push(renderDisabled(pickedColor, props.variant))
+    if (props.disabled) {
+      const pickedColor = (Colors[props.color as ButtonColor] as ButtonColor) || undefined
+
+      properties.push(setupDisable(pickedColor, props.variant))
     }
 
     return properties
   }};
 `
+
 export default StyledButton

@@ -3,8 +3,8 @@ export type ColorTypes = keyof typeof Colors
 export const Colors = {
   primary: '#00A3E0',
   primary_deep: '#003DA5',
-  white: '#fff',
   blue: '#0078D4',
+  white: '#fff',
   green: '#00B140',
   green_light: '#97D700',
   purple: '#AF1685',

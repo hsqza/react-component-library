@@ -1,28 +1,15 @@
-import React, { FC } from 'react'
+import React, { FC, forwardRef } from 'react'
 import { ButtonProps } from './Button.types'
 import StyledButton from './Button.style'
 
-const Button: FC<ButtonProps> = (props) => {
-  const {
-    size = 'md',
-    disabled,
-    onClick,
-    color = 'primary',
-    variant = 'contained',
-    children
-  } = props
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { size = 'md', color = 'primary', variant = 'contained', children, ...other } = props
 
   return (
-    <StyledButton
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      size={size}
-      color={color}
-      variant={variant}>
+    <StyledButton ref={ref} type="button" size={size} color={color} variant={variant} {...other}>
       {children}
     </StyledButton>
   )
-}
+})
 
 export default Button
