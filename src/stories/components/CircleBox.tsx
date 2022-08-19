@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { Typography } from '../../components'
 import StyledCircleBox, { StyledContent } from './CircleBox.style'
 
 export interface CircleBoxProps {
@@ -11,8 +12,8 @@ const CircleBox: FC<CircleBoxProps> = ({ name, color, hideColorText }) => {
   return (
     <StyledCircleBox name={name} color={color}>
       <StyledContent>
-        <span>{name}</span>
-        {!hideColorText && <span>{color}</span>}
+        <Typography variant="body2">{name}</Typography>
+        {!hideColorText && <Typography variant="body2">{color}</Typography>}
       </StyledContent>
     </StyledCircleBox>
   )

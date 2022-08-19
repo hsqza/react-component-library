@@ -13,10 +13,10 @@ const Box: FC = () => {
 }
 
 export default {
-  title: 'LauncherReactComponentLibrary/Colors',
+  title: 'LauncherReactComponentLibrary/core',
   component: Box
 }
 
 const Template: ComponentStory<typeof Box> = () => <Box />
 
-export const Palette = Template.bind({})
+export const _Colors = Template.bind({})

@@ -17,7 +17,9 @@ export enum DefaultVariantMapping {
   span = 'span'
 }
 
+export type VariantKeyValues = keyof typeof DefaultVariantMapping
+
 export interface TypographyProps extends ComponentInterface {
   as?: HTMLVariants
-  variant: HTMLVariants
+  variant: VariantKeyValues
 }

@@ -13,10 +13,10 @@ const Box: FC = () => {
 }
 
 export default {
-  title: 'LauncherReactComponentLibrary/Gradients',
+  title: 'LauncherReactComponentLibrary/core',
   component: Box
 }
 
 const Template: ComponentStory<typeof Box> = () => <Box />
 
-export const Palette = Template.bind({})
+export const _Gradients = Template.bind({})
